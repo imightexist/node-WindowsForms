@@ -1,6 +1,2 @@
 # node-WindowsForms
-a nodejs package that uses csharp technologies to make a windows forms gui
-# q and a
-questions
-## will it be finished
-stfu
+a nodejs package that uses csharp spaghetti code to make a windows forms app. as of right now, even though its not released, it doesn't have many components, just the most common ones.
