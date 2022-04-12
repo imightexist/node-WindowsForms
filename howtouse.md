@@ -87,3 +87,4 @@ This will change the label's text to Goodbye world
     form.modify('button1','You clicked me!');
   });
 ```
+First argument is the id of the component, and the second is the function that runs when it is clicked
