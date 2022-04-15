@@ -2,6 +2,7 @@ const proc = require('child_process').spawn;
 const fs = require('fs');
 //const build = require('./build.js');
 const config = require('./config.json');
+const writable = require('stream').writable;
 
 
 
@@ -13,12 +14,18 @@ module.exports.textbox = require('./textbox.js');
 module.exports.picturebox = require('./picture.js');
 module.exports = class{
     constructor(text){
-        fs.unlink('test.cs',function(){if (err) throw err;});
+        //fs.unlink('test.cs',function(err){if (err) throw err;});
+        //proc('cmd',['/c del test.cs']);
         this.text = text;
         this.subproc = "adsfasdf";
         this.logger = fs.createWriteStream('test.cs', {
-            flags: 'a'
+            flags: 'a+'
         });
+        //this.logger = writable;
+        //this.logger.open();
+        /*this.logger.write = function(f){
+            proc('cmd',['/c echo ' + f + ' >> test.cs']);
+        }*/
         this.controls = new Array();
         this.pictures = new Array();
         this.logger.write('using System;\r\n');
@@ -40,7 +47,7 @@ module.exports = class{
             this.logger.write('      Point ' + id + 'Location = new Point(' + funi.x.ToString() + ',' + funi.y.ToString() + ');\r\n');
             this.logger.write('      Size ' + id + 'Size = new Size(' + funi.width.ToString() + ',' + funi.height.ToString() + ');\r\n');
             this.logger.write('      System.EventHandler ' + id + 'Click = new System.EventHandler((object sender, EventArgs e)=>{Console.WriteLine("' + id + ' clicked")});\r\n');
-            this.this.controls.push(id);
+            this.controls.push(id);
         }
         if (type == "label"){
             this.logger.write('      Label ' + id + ' = new Label();\r\n');
@@ -48,7 +55,7 @@ module.exports = class{
             this.logger.write('      Point ' + id + 'Location = new Point(' + funi.x.ToString() + ',' + funi.y.ToString() + ');\r\n');
             this.logger.write('      Size ' + id + 'Size = new Size(' + funi.width.ToString() + ',' + funi.height.ToString() + ');\r\n');
             this.logger.write('      System.EventHandler ' + id + 'Click = new System.EventHandler((object sender, EventArgs e)=>{Console.WriteLine("' + id + ' clicked")});\r\n');
-            this.this.controls.push(id);
+            this.controls.push(id);
         }
         if (type == "picture"){
             this.logger.write('      PictureBox ' + id + ' = new PictureBox();\r\n');
@@ -69,7 +76,7 @@ module.exports = class{
         }
     }
     finish = function(){
-        this.logger.write('      public Form1(){\r\n');
+        console.log(this.logger.write('      public Form1(){\r\n'));
         this.logger.write('          this.SuspendLayout();\r\n');
         this.logger.write('          this.Text = "' + this.text + '";\r\n');
         for (let i = 0; i > this.controls.length; i++){
@@ -105,10 +112,11 @@ module.exports = class{
         this.logger.write('}\r\n');
         this.logger.close(function(){
             console.log("Finished");
+            proc(config.folder + '/' + config.version + '/csc.exe',['test.cs']);
+            setTimeout(function(){this.subproc = proc('test.exe')},1000);
         });
         //console.log("Finished");
-        proc(config.folder + '/' + config.version + '/csc.exe',['test.cs']);
-        this.subproc = proc('test.exe');
+        
     }
     modify = function(id,changeTo){
         this.subproc.stdin.write(id + ' ' + changeTo);
