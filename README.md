@@ -5,3 +5,4 @@ How to use: https://github.com/imightexist/node-WindowsForms/blob/main/howtouse.
 # Issues
 - Limited components
 - Limited properties to edit
+- No linux support
