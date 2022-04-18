@@ -88,3 +88,5 @@ This will change the label's text to Goodbye world
   });
 ```
 First argument is the id of the component, and the second is the function that runs when it is clicked
+## For linux...
+Install mono and if necessary the mcs compiler
