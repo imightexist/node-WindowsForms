@@ -1,5 +1,5 @@
 # node-WindowsForms
-a nodejs package that uses csharp spaghetti code and shitty nodejs to csharp communication to make a windows forms app.
+a nodejs package that uses csharp spaghetti code and shitty nodejs to csharp communication to make a windows forms app. as of now i will take a break from this project but feel free to make any pull requests if there is something wrong with the code
 
 How to use: https://github.com/imightexist/node-WindowsForms/blob/main/howtouse.md
 # Issues
