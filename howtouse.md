@@ -23,7 +23,9 @@ Create a winForms class like this:
 ```javascript
   const windowsforms = require('windowsforms');
   const form = new windowsforms({
-    text:"Hello world"
+    text:"Hello world",
+    width:100,
+    height:100
   });
   const label = new windowsforms.label({
     text:"Hello world",
@@ -38,7 +40,9 @@ Create a winForms class like this:
   //lmao i am not copying and pasting this help me
   const windowsforms = require('windowsforms')
   const form = new windowsforms({
-    text:"Buttons demo"
+    text:"Hello world",
+    width:100,
+    height:100
   });
   const button = new windowsforms.button({
    text:"Hello world",
@@ -51,7 +55,9 @@ Create a winForms class like this:
   //oh wait ctrl c ctrl v is a thing? god damn it
   const windowsforms = require('windowsforms')
   const form = new windowsforms({
-    text:"Textbox demo"
+    text:"Hello world",
+    width:100,
+    height:100
   });
   const textbox = new windowsforms.textbox({
    text:"Hello world",
@@ -63,7 +69,9 @@ Create a winForms class like this:
 ```javascript
   const windowsforms = require('windowsforms')
   const form = new windowsforms({
-    text:"Buttons demo"
+    text:"Hello world",
+    width:100,
+    height:100
   });
   const button = new windowsforms.picturebox({
    ImageLocation:"C:/Windows/Web/Wallpaper/0.jpg",
