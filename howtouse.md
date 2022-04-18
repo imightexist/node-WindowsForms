@@ -9,8 +9,10 @@ Create a winForms class like this:
 ```javascript
   const windowsforms = require('windowsforms');
   const form = new windowsforms({
-    text:"Hello world"
-  });//as of now width and height hasn't been added to form classes
+    text:"Hello world",
+    width:100,
+    height:100
+  });
   form.finish();
 ```
 ## Adding components
