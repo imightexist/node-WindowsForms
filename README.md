@@ -5,7 +5,8 @@ How to use: https://github.com/imightexist/node-WindowsForms/blob/main/howtouse.
 # Issues
 - Limited components
 - Limited properties to edit
-- No linux support
+- Modify and onclick don't work
 # Current update log
 - Added linux support
 - Width and height is now supported
+- Changed demo program to a not currently functional calculator
