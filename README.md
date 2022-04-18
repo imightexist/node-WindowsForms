@@ -6,3 +6,6 @@ How to use: https://github.com/imightexist/node-WindowsForms/blob/main/howtouse.
 - Limited components
 - Limited properties to edit
 - No linux support
+# Current update log
+- Added linux support
+- Width and height is now supported
