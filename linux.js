@@ -8,12 +8,6 @@ const writable = require('stream').writable;
 
 
 
-module.exports.button = require('./button.js');
-module.exports.label = require('./label.js');
-//exports.progressbar = require('./progress.js');
-module.exports.textbox = require('./textbox.js');
-module.exports.picturebox = require('./picture.js');
-module.exports.linux = require('./linux.js');
 module.exports = class{
     constructor(text,width,height){
         if (fs.existsSync('test.cs')){
@@ -39,8 +33,6 @@ module.exports = class{
         this.controls = new Array();
         this.pictures = new Array();
         this.logger.write('using System;\r\n');
-        this.logger.write('using System.Collections.Generic;\r\n');
-        this.logger.write('using System.Linq;\r\n');
         this.logger.write('using System.Threading.Tasks;\r\n');
         this.logger.write('using System.Windows.Forms;\r\n');
         this.logger.write('using System.Drawing;\r\n');
@@ -126,9 +118,9 @@ module.exports = class{
         this.logger.write('}\r\n');
         this.logger.close(function(){
             //console.log("Finished");
-            proc(config.folder + '/' + config.version + '/csc.exe',['test.cs']);
+            proc('mcs',['test.cs','-r:System.Windows.Forms.dll,System.Drawing.dll,System.Threading.Tasks.dll']);
             setTimeout(function(){
-                this.subproc = proc('test.exe');
+                this.subproc = proc('mono',['test.exe']);
             },500);
             //console.log(this.subproc);
         });
@@ -136,14 +128,9 @@ module.exports = class{
         
     }
     modify = function(id,changeTo){
-        setTimeout(function(){
-            this.subproc.stdin.write(id + ' ' + changeTo + '\n');
-        },600);
-        
+        this.subproc.stdin.write(id + ' ' + changeTo + '\n');
     }
     onclick = function(id,callback){
-        setTimeout(function(){
-            this.subproc.stdout.on(id + ' clicked',callback);
-        },600);
+        this.subproc.stdout.on(id + ' clicked',callback);
     }
 }
